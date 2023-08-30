@@ -1,0 +1,8 @@
+%dw 2.0
+
+type auto_ac93d369_0073_4d9d_bf75_49dd8229e7c6_Output_Variables_MobNumber = Array<StudentData__c>
+type StudentData__c = {| Number__c?: String {"typeId": "Number__c"} |} {"label": "StudentData",
+"typeId": "StudentData__c"}
+
+
+

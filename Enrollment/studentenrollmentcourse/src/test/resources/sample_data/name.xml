@@ -1,0 +1,16 @@
+<bill>
+	<customer_details>
+		<name>Example Company</name>
+        <address>Pune, India</address>
+	</customer_details>
+	<products>
+		<product no="2">
+			<description>Product 2</description>
+			<quantity>5</quantity>
+			<price>30</price>
+			<discount>10.0%</discount>
+			<product_price>135.0</product_price>
+		</product>
+	</products>
+	<total_price>153.0</total_price>
+</bill>ame>

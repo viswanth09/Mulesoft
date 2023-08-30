@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bill>
+    <customer_details>
+        <name>Example Company</name>
+        <address>Pune, India</address>
+    </customer_details>
+    <products>
+        <product>
+            <description>Product 1</description>
+            <quantity>2</quantity>
+            <price>10</price>
+        </product>
+        <product>
+            <description>Product 2</description>
+            <quantity>5</quantity>
+            <price>30</price>
+        </product>
+    </products>
+</bill>

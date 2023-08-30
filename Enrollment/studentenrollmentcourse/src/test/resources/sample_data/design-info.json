@@ -1,0 +1,30 @@
+{
+  "sampleData": {
+    "54d3d174-878a-4849-be9e-838daac5db75": {
+      "payload": "sample_data/list_java.dwl"
+    },
+    "df4ed3fc-70b4-4adc-bdb2-b990c2a1be19": {
+      "payload": "sample_data/list_courses__c.dwl"
+    },
+    "ec2fee11-9c4e-4a90-bcc2-21492c98aad3": {
+      "payload": "sample_data/json.json"
+    },
+    "a7ce5383-9337-4641-aae4-7840799df5b6": {
+      "payload": "sample_data/list_studentdata__c.dwl"
+    },
+    "6a3fc776-88bf-41fc-b5fc-77f330e03768": {
+      "payload": "sample_data/list_StudentData__c_1.dwl"
+    },
+    "1ef63c40-0056-473b-9c57-4f2d4eb83ad0": {
+      "vars-MobNumber": "sample_data/list_StudentData__c_2.dwl"
+    },
+    "a9b89e52-9444-4a32-8717-d5272e3f6e35": {
+      "vars-MobNumber": "sample_data/list_StudentData__c_3.dwl",
+      "payload": "sample_data/json_1.json"
+    },
+    "c58bcb58-9ba9-48f3-95ad-3ce3cd79a233": {
+      "payload": "sample_data/name.xml"
+    },
+    "e3612491-1df2-4952-b9c3-aa6ff656a431": {}
+  }
+}

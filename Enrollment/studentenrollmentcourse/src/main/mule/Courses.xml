@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="CoursesFlow" doc:id="cdd0dfb3-c21e-445f-a3ee-8fb4becfaee6" >
+		<http:listener doc:name="Listener" doc:id="64af2001-5686-4ec4-b1aa-d8c69a041354" config-ref="Global" path="list" allowedMethods="POST"/>
+		<ee:transform doc:name="Transform Message" doc:id="1151a91d-b245-4343-8091-41a63c64ec26" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import withMaxSize from dw::core::Strings
+output application/json
+var inputList = [
+    { Coursename: "Mulesoft" },
+    { Coursename: "Devops" },
+    { Coursename: "PowerBI" },
+    { Coursename: "Azure" },
+    { Coursename: "Automation" },
+    { Coursename: "RPA" },
+    { Coursename: "SAP" },
+    { Coursename: "AWS" }
+]
+var seed = (((uuid()) splitBy ("-"))[0]) withMaxSize 5 // You can use any initial value here
+---
+inputList map ((item, index) -> {
+    CourseID__c: (((uuid()) splitBy ("-"))[0]) withMaxSize 5  ,
+    Coursename__c: item.Coursename
+})]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<salesforce:upsert doc:name="Upsert" doc:id="fca44b0f-59c2-4431-ba02-71b6decb70ac" config-ref="Salesforce_Config" objectType="Courses__c" externalIdFieldName="Id"/>
+	</flow>
+</mule>

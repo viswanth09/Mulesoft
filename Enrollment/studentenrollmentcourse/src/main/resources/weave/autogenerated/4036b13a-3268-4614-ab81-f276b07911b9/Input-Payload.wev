@@ -1,0 +1,10 @@
+%dw 2.0
+
+type auto_4036b13a_3268_4614_ab81_f276b07911b9_Input_Payload = {
+  Address: String, 
+  Number: Number, 
+  Course: Array<Any>, 
+  Name: String, 
+  _?: Any
+}
+

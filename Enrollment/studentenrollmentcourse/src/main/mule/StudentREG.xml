@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="StudentREGFlow" doc:id="ac93d369-0073-4d9d-bf75-49dd8229e7c6" >
+		<salesforce:query doc:name="Query" doc:id="0299b068-53db-4c85-9eaf-ddbae8b46077" config-ref="Salesforce_Config" target="MobNumber">
+			<salesforce:salesforce-query ><![CDATA[SELECT Number__c FROM StudentData__c]]></salesforce:salesforce-query>
+		</salesforce:query>
+		<logger level="INFO" doc:name="Logger" doc:id="1ef63c40-0056-473b-9c57-4f2d4eb83ad0" message="#[%dw 2.0&#10;output application/json&#10;---&#10;if (payload.Number == vars.MobNumber[0].Number__c) &quot;fail&quot;&#10;else 'null']"/>
+		<ee:transform doc:name="Transform Message" doc:id="a9b89e52-9444-4a32-8717-d5272e3f6e35" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="Error" ><![CDATA[%dw 2.0
+output application/json
+---
+if (payload.Number == vars.MobNumber[0].Number__c) "fail"
+else 'null']]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<choice doc:name="Choice" doc:id="fd999a27-f0e8-4351-ac49-1805c7aaa27c" >
+			<when expression='#[vars.Error == "fail"]'>
+				<try doc:name="Try" doc:id="1c6abdb3-b23d-4f39-a8c2-1c1d223747d0" >
+					<logger level="INFO" doc:name="Logger" doc:id="a962dc8c-e9c1-4ec1-ab46-65045999d0fd" message="#[1==2]" />
+					<raise-error doc:name="Raise error" doc:id="7b54ad26-eff0-4799-8a15-134fd680ffa3" type="ANY" description='"message": "Student already enrolled with this number"'/>
+					<error-handler >
+						<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="e4ea170d-63ac-4e64-8c56-5b2ec19f152e" type="ANY">
+							<ee:transform doc:name="Transform Message" doc:id="3378fd1b-f658-44de-9c0c-278e64b4e4b0" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+	"message": "Student already enrolled with this number"
+}]]></ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						</on-error-propagate>
+					</error-handler>
+				</try>
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Logger" doc:id="24e1ec28-029f-4c82-bc2c-ee3c85ba45ec" message="#[payload]"/>
+			</otherwise>
+		</choice>
+	
+</flow>
+</mule>
