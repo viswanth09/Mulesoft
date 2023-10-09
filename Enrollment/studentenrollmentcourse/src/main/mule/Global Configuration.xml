@@ -11,6 +11,5 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
     <salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="5f5f4639-7d2d-4328-977a-0f6139098d6a">
         <salesforce:basic-connection username="vnd@native.com" password="Native@viswanth09" securityToken="9bsRugEjqsw2jACPGVT2VW54K" />
     </salesforce:sfdc-config>
-	<api-gateway:autodiscovery apiId="18930689" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="ae5095e1-c8c2-481d-8cde-f0165c6467d5" flowRef="student-enrollment-course-main" />
 	<api-gateway:autodiscovery apiId="19019202" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="789f9ccd-859d-45e7-ba2b-b34ce1142215" flowRef="student-enrollment-course-main" />
 </mule>

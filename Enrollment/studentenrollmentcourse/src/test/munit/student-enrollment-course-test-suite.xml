@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="student-enrollment-course-test-suite.xml" />
+	<munit:test name="student-enrollment-course-test-suite-get:\course:student-enrollment-course-configTest" doc:id="8865c7b0-7a13-4e9f-8def-54ee768a4aae" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get:\course:student-enrollment-course-config" doc:id="bd9ff965-78fd-411b-ac03-3b6c2bdce52e" name="get:\course:student-enrollment-course-config"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>
